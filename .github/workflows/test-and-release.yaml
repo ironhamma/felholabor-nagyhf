@@ -7,7 +7,10 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Log in to DockerHub
-        run: echo ${{ secrets.DOCKERHUB_PASSWORD }} | docker login -u ${{ secrets.DOCKERHUB_USERNAME }} --password-stdin
+        run: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
       - name: Build and run Docker Compose
         run: |
           docker-compose up -d --build
