@@ -1,0 +1,43 @@
+version: '3.8'
+
+services:
+  detection-api:
+    image: detection
+    ports:
+      - "4000:4000"
+    networks:
+      - labor-network
+    depends_on:
+      - database
+  database:
+    image: mysql
+    environment:
+      MYSQL_DATABASE: 'labor_hf'
+      MYSQL_USER: 'benedek'
+      MYSQL_PASSWORD: 'benedek'
+      MYSQL_ROOT_PASSWORD: 'root'
+    ports:
+      - "3306:3306"
+    networks:
+      - labor-network
+    volumes:
+      - mysql_data:/var/lib/mysql
+  backend-server:
+    image: backend
+    ports:
+      - "5000:5000"
+    networks:
+      - labor-network
+    depends_on:
+      - database
+  frontend:
+    image: labor-frontend
+    ports:
+      - "8080:80"
+    networks:
+      - labor-network
+networks:
+  labor-network:
+    driver: bridge
+volumes:
+  mysql_data:
