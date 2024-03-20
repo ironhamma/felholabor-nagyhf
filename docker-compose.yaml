@@ -14,10 +14,10 @@ services:
   database:
     image: mysql
     environment:
-      MYSQL_DATABASE: 'labor_hf'
-      MYSQL_USER: 'benedek'
-      MYSQL_PASSWORD: 'benedek'
-      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_DATABASE: ${DB_NAME}
+      MYSQL_USER: ${DB_USER}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT}
     ports:
       - "3306:3306"
     networks:
@@ -35,6 +35,9 @@ services:
     environment:
       DETECTION_HOST: 'detection-api'
       DB_HOST: 'database'
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_NAME: ${DB_NAME}
   frontend:
     image: szabobeno/felholabor-nagyhf:frontend-${IMAGE_TAG}
     ports:

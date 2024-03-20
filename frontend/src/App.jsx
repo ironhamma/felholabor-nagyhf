@@ -1,3 +1,4 @@
+import React from 'react';
 import ImageUpload from '../components/ImageUpload';
 import ImageList from '../components/ImageList';
 

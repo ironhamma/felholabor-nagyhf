@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import axios from 'axios';
 
 const BACKEND_HOST = import.meta.env.BACKEND_HOST || 'localhost';

@@ -1,0 +1,54 @@
+{
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/recommended",
+    "plugin:react-hooks/recommended"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2021,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
+  "env": {
+    "browser": true
+  },
+  "plugins": ["react", "react-hooks"],
+  "rules": {
+    "no-console": "off",
+        "no-unused-vars": ["error"],
+        "global-require": ["off", "never"],
+        "func-names": ["off", "never"],
+        "react/prop-types": "off",
+        "no-plusplus": "off",
+        "react/destructuring-assignment": "off",
+        "import/prefer-default-export": "off",
+        "react/button-has-type": "off",
+        "jsx-a11y/no-autofocus": "off",
+        "jsx-a11y/click-events-have-key-events": "off",
+        "jsx-a11y/no-static-element-interactions": "off",
+        "jsx-a11y/anchor-is-valid": "off",
+        "curly": ["error", "all"],
+        "react/jsx-fragments": "off",
+        "no-await-in-loop": "off",
+        "class-methods-use-this": "off",
+        "default-case": "off",
+        "guard-for-in": "off",
+        "jsx-a11y/no-noninteractive-element-interactions": "off",
+        "max-classes-per-file": "off",
+        "no-continue": "off",
+        "no-constant-condition": "off",
+        "no-empty-function": "off",
+        "no-param-reassign": "off",
+        "no-restricted-syntax": "off",
+        "react/jsx-props-no-spreading": "off",
+        "jsx-a11y/label-has-associated-control": "off",
+        "no-return-await": "off",
+        "no-useless-escape": "off",
+        "no-bitwise": "off",
+        "new-cap": "off",
+        "jsx-a11y/mouse-events-have-key-events": "off",
+        "consistent-return": "warn"
+  }
+}
