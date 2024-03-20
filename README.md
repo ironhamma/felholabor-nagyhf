@@ -49,6 +49,7 @@ A workflow lépései:
 - Deploy: `docker-compose up -d build` parancs futtatása
 
 ## TODO:
+- Verzió követelmények hozzáadása
 - Kód szebb strukturálása
 - Minden kellő változó .env-be mozgatása
 - Feliratkozás implementálása
