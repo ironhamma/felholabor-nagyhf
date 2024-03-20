@@ -16,7 +16,7 @@ jobs:
         uses: docker/setup-buildx-action@v1
 
       - name: Dir check
-        run: ls -la
+        run: ls -la ./detection
 
       - name: Build and push detection-api image
         uses: docker/build-push-action@v2

@@ -48,5 +48,3 @@ networks:
     driver: bridge
 volumes:
   mysql_data:
-
-# trigger a run
