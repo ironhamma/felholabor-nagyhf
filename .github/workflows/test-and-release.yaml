@@ -55,6 +55,7 @@ jobs:
             szabobeno/felholabor-nagyhf:frontend-${{ github.sha }}
   deploy:
     runs-on: ubuntu-latest
+    needs: [test, build]
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
