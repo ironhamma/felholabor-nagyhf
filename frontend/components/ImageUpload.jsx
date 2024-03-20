@@ -1,6 +1,8 @@
 import { useRef, useState } from 'react';
 import axios from 'axios';
 
+const BACKEND_HOST = import.meta.env.BACKEND_HOST || 'localhost';
+
 const ImageUpload = () => {
   const [image, setImage] = useState(null);
   const [caption, setCaption] = useState('');
@@ -19,7 +21,7 @@ const ImageUpload = () => {
     formData.append('caption', caption);
 
     try {
-      await axios.post('http://backend-server:5000/upload_files', formData, {
+      await axios.post(`http://${BACKEND_HOST}:5000/upload_files`, formData, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

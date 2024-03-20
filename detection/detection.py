@@ -4,6 +4,8 @@ import numpy as np
 
 app = Flask(__name__)
 
+app.config['PYTHON_HOST'] = os.environ.get('PYTHON_HOST', 'localhost')
+
 # Load pre-trained car detection model
 car_cascade = cv2.CascadeClassifier('./cars.xml')
 
@@ -34,4 +36,4 @@ def detect_cars():
 
 if __name__ == '__main__':
     port_number = 4000
-    app.run(debug=True, port=port_number, host="detection-api")
+    app.run(debug=True, port=port_number, host=app.config['PYTHON_HOST'])

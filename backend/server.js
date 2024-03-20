@@ -7,6 +7,9 @@ const cors = require("cors");
 const fs = require("fs");
 const axios = require("axios");
 const FormData = require("form-data");
+require('dotenv').config();
+
+const DETECTION_HOST = process.env.DETECTION_HOST || 'localhost';
 
 const {Image} = require('./models/Image');
 
@@ -32,7 +35,7 @@ async function uploadFiles(req, res) {
     const formData = new FormData();
     formData.append('image', fs.createReadStream(req.files[0].path));
 
-    const {data} = await axios.post('http://detection-api:4000/detect_cars', formData,
+    const {data} = await axios.post(`http://${DETECTION_HOST}:4000/detect_cars`, formData,
         {
             headers: {...formData.getHeaders()}
         }

@@ -1,8 +1,10 @@
 const { DataTypes } = require('sequelize');
 const {Sequelize} = require('sequelize');
 
+const DB_HOST = process.env.DB_HOST || 'localhost';
+
 const sequelize = new Sequelize('labor_hf', 'benedek', 'benedek', {
-    host: 'database',
+    host: DB_HOST,
     dialect: 'mysql',
   });
 
