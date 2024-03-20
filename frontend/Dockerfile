@@ -4,7 +4,7 @@ FROM node:14 AS build
 WORKDIR /app
 
 # Copy package.json and package-lock.json files and install dependencies
-COPY frontend/package.json package-lock.json /app
+COPY frontend/package.json frontend/package-lock.json /app
 RUN npm install
 
 # Copy the rest of the application files
