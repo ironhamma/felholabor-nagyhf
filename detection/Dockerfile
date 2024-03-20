@@ -9,14 +9,14 @@ RUN apt-get update \
 WORKDIR /app
 
 # Copy the requirements file into the container
-COPY requirements.txt /app
+COPY detection/requirements.txt /app
 
 # Install Python dependencies
 RUN pip install --upgrade pip
 RUN pip install --no-cache-dir -r requirements.txt
 
 # Copy the Flask application files into the container
-COPY . /app
+COPY detection /app
 
 # Expose the port that Flask app runs on
 EXPOSE 4000
