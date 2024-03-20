@@ -5,13 +5,13 @@ FROM node:14
 WORKDIR /app
 
 # Copy package.json and package-lock.json files into the container
-COPY package*.json /app
+COPY frontend/package*.json /app
 
 # Install dependencies
 RUN npm install
 
 # Copy the rest of the application files into the container
-COPY . /app
+COPY frontend /app
 
 # Expose the port that the Node.js server runs on
 EXPOSE 5000

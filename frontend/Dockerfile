@@ -4,11 +4,11 @@ FROM node:14 AS build
 WORKDIR /app
 
 # Copy package.json and package-lock.json files and install dependencies
-COPY package.json package-lock.json /app
+COPY backend/package.json package-lock.json /app
 RUN npm install
 
 # Copy the rest of the application files
-COPY . /app
+COPY backend /app
 
 # Build the React app
 RUN npm run build
