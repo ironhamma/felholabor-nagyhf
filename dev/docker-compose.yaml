@@ -34,7 +34,7 @@ services:
       - database
     environment:
       DETECTION_HOST: 'localhost'
-      DB_HOST: 'localhost'
+      DB_HOST: 'mysql'
   frontend:
     image: labor-frontend
     ports:
