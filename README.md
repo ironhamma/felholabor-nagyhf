@@ -16,17 +16,19 @@ A házi feladat megoldásom X komponenst használ, melyek:
 - Node.js API: A képfeltöltéshez és a képek kilistázásához
 - MySQL adatbázis: A képek és a hozzájuk kapcsolódó adatok tárolásához
 - React frontend: A weboldal felhasználói felületének megjelenítéséhez
+- RabbitMQ Message Queue: A feliratkozott adminisztrátorok számára történő emailek kiküldéséhez 
 
 ## Lokális használat
 
 1. A `frontend` és `backend` mappákban az `npm install` parancs futtatása
 2. A `detection` mappában a `pip install -r requirements.txt` parancs futtatása
 3. A `frontend` és `backend` mappákban a `.env.example` fájl alapján egy `.env` fájl létrehozása
-4. A `detection` mappában a `python detection.py` parancs futtatása
-5. MySQL adatbázis indítása, amely tartalmaz egy `labor_hf` nevű táblát
-6. A `backend` mappában az `npm run dev` parancs futtatása
-7. A `frontend` mappában az `npm run dev` parancs futtatása
-8. Ezen a ponton a detection API, a node.js backend és a frontend is el kellett induljon, a frontend elérhető a `http://localhost:5173/` URL-en
+4. A `mq` mappában a Dockerfile buildelése és elindítása
+5. A `detection` mappában a `python detection.py` parancs futtatása
+6. MySQL adatbázis indítása, amely tartalmaz egy `labor_hf` nevű táblát
+7. A `backend` mappában az `npm run dev` parancs futtatása
+8. A `frontend` mappában az `npm run dev` parancs futtatása
+9. Ezen a ponton a detection API, a node.js backend és a frontend is el kellett induljon, a frontend elérhető a `http://localhost:5173/` URL-en
 
 
 ## Lokális konténerizált használat
@@ -34,8 +36,9 @@ A házi feladat megoldásom X komponenst használ, melyek:
 1. A `frontend` mappában a Dockerfile buildelése a `docker build -t labor-frontend .`˙ parancs futtatásával
 2. A `backend` mappában a Dockerfile buildelése a `docker build -t backend .` parancs futtatásával
 3. A `detection` mappában a Dockerfile buildelése a `docker build -t detection .` parancs futtatásával
-4. A `dev` könyvtárban a `docker-compose up -d` parancs futtatása
-5. Pár példa kép található a `dev/examples` mappában
+4. A `mq` mappában a Dockerfile buildelése a `docker build -t labor-mq .` parancs futtatásával
+5. A `dev` könyvtárban a `docker-compose up -d` parancs futtatása
+6. Pár példa kép található a `dev/examples` mappában
 
 
 ## CI/CD használata
@@ -44,7 +47,7 @@ A kódban történő módosítás után PUSH eseményre lefut a `Test, build and
 A workflow lépései:
 - Tesztek futtatása
 - Build
-- - Docker image-ek készítése a `detection`, `backend` és `frontend` könyvtárakban található Dockerfile alapján
+- - Docker image-ek készítése a `detection`, `mq`, `backend` és `frontend` könyvtárakban található Dockerfile alapján
 - - Docker image-ek feltöltése a projekthez tartozó Dockerhub repository-ba, a commithoz tartozó hash-t használva tag-ként
 - Deploy: `docker-compose up -d build` parancs futtatása
 
@@ -53,5 +56,4 @@ A workflow lépései:
 - Kód szebb strukturálása
 - Minden kellő változó .env-be mozgatása
 - Feliratkozás implementálása
-- Message queue implementálása és bekötése a folyamatba
 - Statikus és unit tesztek hozzáadása
