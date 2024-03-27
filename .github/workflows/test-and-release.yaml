@@ -51,6 +51,16 @@ jobs:
             szabobeno/felholabor-nagyhf:latest
             szabobeno/felholabor-nagyhf:detection-api-${{ github.sha }}
 
+      - name: Build and push mq image
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          file: mq/Dockerfile
+          push: true
+          tags: |
+            szabobeno/felholabor-nagyhf:latest
+            szabobeno/felholabor-nagyhf:labor-mq-${{ github.sha }}
+
       - name: Build and push backend-server image
         uses: docker/build-push-action@v2
         with:

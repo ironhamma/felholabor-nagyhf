@@ -24,6 +24,13 @@ services:
       - labor-network
     volumes:
       - mysql_data:/var/lib/mysql
+  labor-mq:
+    image: szabobeno/felholabor-nagyhf:labor-mq-${IMAGE_TAG}
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - labor-network
   backend-server:
     image: szabobeno/felholabor-nagyhf:backend-server-${IMAGE_TAG}
     ports:
@@ -32,12 +39,15 @@ services:
       - labor-network
     depends_on:
       - database
+      - detection-api
+      - labor-mq
     environment:
       DETECTION_HOST: 'detection-api'
       DB_HOST: 'database'
       DB_USER: ${DB_USER}
       DB_PASSWORD: ${DB_PASSWORD}
       DB_NAME: ${DB_NAME}
+      MQ_HOST: 'labor-mq'
   frontend:
     image: szabobeno/felholabor-nagyhf:frontend-${IMAGE_TAG}
     ports:

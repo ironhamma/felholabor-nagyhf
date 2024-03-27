@@ -7,6 +7,7 @@ const path = require("path");
 const cors = require("cors");
 const fs = require("fs");
 const axios = require("axios");
+const cron = require('node-cron');
 // eslint-disable-next-line import/no-extraneous-dependencies
 const FormData = require("form-data");
 require("dotenv").config();
@@ -14,6 +15,8 @@ require("dotenv").config();
 const DETECTION_HOST = process.env.DETECTION_HOST || "localhost";
 
 const { Image } = require("./models/Image");
+const { publishMessage } = require("./publishMessage");
+const { consumeMessages } = require("./consumeMessages");
 
 const app = express();
 app.use(express.json());
@@ -32,6 +35,11 @@ const getImages = async (req, res) => {
     })),
   });
 };
+
+app.get('/mqtest', (req, res) => {
+  publishMessage();
+  res.json({ message: 'Message sent' });
+});
 
 app.get("/uploaded_images", getImages);
 
@@ -64,4 +72,10 @@ app.post("/upload_files", upload.array("image"), uploadFiles);
 
 app.listen(5000, async () => {
   console.log(`Server started on ${5000}`);
+  await consumeMessages();
+});
+
+// Schedule task to run every day at 22:00
+cron.schedule('0 22 * * *', () => {
+  publishMessage()
 });
