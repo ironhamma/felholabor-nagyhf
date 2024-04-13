@@ -10,7 +10,7 @@ A nagyházi feladat egy CI/CD környezet létrehozása és ennek használatával
 
 ### A megoldásom:
 
-A házi feladat megoldásom X komponenst használ, melyek:
+A házi feladat megoldásom 5 komponenst használ, melyek:
 
 - Python Flask API: Az autó detektálás megvalósításához
 - Node.js API: A képfeltöltéshez és a képek kilistázásához
