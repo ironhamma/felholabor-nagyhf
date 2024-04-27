@@ -1,5 +1,6 @@
 // server.js
 const express = require("express");
+const path = require("path");
 const cors = require("cors");
 const cron = require("node-cron");
 // eslint-disable-next-line import/no-extraneous-dependencies
@@ -13,6 +14,7 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
+app.use("/images", express.static(path.join(__dirname, "uploads")));
 
 setUpRoutes(app);
 

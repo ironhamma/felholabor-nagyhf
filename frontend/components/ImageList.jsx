@@ -19,8 +19,6 @@ const ImageList = () => {
     fetchImages();
   }, []);
 
-  console.log(images);
-
   return (
     <div>
       <h2>Uploaded Images</h2>
@@ -28,7 +26,7 @@ const ImageList = () => {
       {images.length > 0 && images.map((image, index) => (
         <div key={index} style={{position: 'relative'}} className='image-container'>
           <img src={`http://${BACKEND_HOST}:5000/images/${image.image}`} alt={`Image ${index}`} />
-          <p>{image.caption}</p>
+          <p>Leírás:<br /><br />{image.caption}</p>
           {image.detections && image.detections.map(det => ((
             <div className='bounding-box' key={det.x} style={{
               position: 'absolute',

@@ -7,7 +7,7 @@ const { Image } = require("../models/db");
 
 async function uploadFiles(req, res) {
   const formData = new FormData();
-  formData.append("image", fs.createReadStream(req.files[0].path));
+  formData.append("image", fs.createReadStream(req.file.path));
 
   const { data } = await axios.post(
     `http://${DETECTION_HOST}:4000/detect_cars`,
@@ -19,12 +19,10 @@ async function uploadFiles(req, res) {
 
   const detection = data.cars;
 
-  const uploadedImages = req.files.map(async (file) => {
-    await Image.create({
-      image: file.filename,
-      caption: req.body.caption,
-      detection,
-    });
+  const uploadedImages = await Image.create({
+    image: req.file.filename,
+    caption: req.body.caption,
+    detection,
   });
 
   res.json({ message: "Successfully uploaded files", uploadedImages });
