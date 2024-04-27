@@ -10,7 +10,7 @@ const Admin = () => {
 
     const subscribeEmail = async () => {
         try {
-            const response = await axios.post(`${BACKEND_HOST}/subscribe`, { email });
+            // const response = await axios.post(`${BACKEND_HOST}/subscribe`, { email });
             setEmail('');
         } catch (error) {
             console.error(error);
