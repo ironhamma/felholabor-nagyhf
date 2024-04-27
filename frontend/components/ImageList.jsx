@@ -27,7 +27,7 @@ const ImageList = () => {
       <div className='imageList'>
       {images.length > 0 && images.map((image, index) => (
         <div key={index} style={{position: 'relative'}} className='image-container'>
-          <img src={`http://${BACKEND_HOST}:5000/uploaded_images/${image.image}`} alt={`Image ${index}`} />
+          <img src={`http://${BACKEND_HOST}:5000/images/${image.image}`} alt={`Image ${index}`} />
           <p>{image.caption}</p>
           {image.detections && image.detections.map(det => ((
             <div className='bounding-box' key={det.x} style={{

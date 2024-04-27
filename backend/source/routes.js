@@ -8,7 +8,8 @@ const { subscribeEmail } = require("./subscribeEmail");
 const { getEmails } = require("./getEmails");
 
 const setUpRoutes = (app) => {
-  app.use("/uploaded_images", express.static(path.join(__dirname, "uploads")));
+  const upload = multer({ dest: "uploads/" });
+  app.use("/images", express.static(path.join(__dirname, "uploads")));
 
   app.get("/mqtest", (req, res) => {
     publishMessage();
