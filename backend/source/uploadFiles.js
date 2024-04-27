@@ -1,5 +1,7 @@
 const axios = require("axios");
 const fs = require("fs");
+// eslint-disable-next-line import/no-extraneous-dependencies
+const FormData = require("form-data");
 const { DETECTION_HOST } = require("../config");
 const { Image } = require("../models/db");
 

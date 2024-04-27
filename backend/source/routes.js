@@ -4,8 +4,8 @@ const multer = require("multer");
 const { publishMessage } = require("../publishMessage");
 const { getImages } = require("./getImages");
 const { uploadFiles } = require("./uploadFiles");
-
-const upload = multer({ dest: "uploads/" });
+const { subscribeEmail } = require("./subscribeEmail");
+const { getEmails } = require("./getEmails");
 
 const setUpRoutes = (app) => {
   app.use("/uploaded_images", express.static(path.join(__dirname, "uploads")));
@@ -18,6 +18,9 @@ const setUpRoutes = (app) => {
   app.get("/uploaded_images", getImages);
 
   app.post("/upload_files", upload.array("image"), uploadFiles);
+
+  app.post("/subscribe", subscribeEmail);
+  app.get("/emails", getEmails);
 };
 
 exports.setUpRoutes = setUpRoutes;

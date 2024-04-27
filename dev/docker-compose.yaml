@@ -24,6 +24,15 @@ services:
       - labor-network
     volumes:
       - mysql_data:/var/lib/mysql
+  labor-mq:
+    image: labor-mq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    networks:
+      - labor-network
+    depends_on:
+      - database
   backend-server:
     image: backend
     ports:
@@ -32,9 +41,15 @@ services:
       - labor-network
     depends_on:
       - database
+      - detection-api
+      - labor-mq
     environment:
-      DETECTION_HOST: 'localhost'
-      DB_HOST: 'mysql'
+      DETECTION_HOST: 'detection-api'
+      DB_HOST: 'database'
+      DB_USER: 'benedek'
+      DB_PASSWORD: 'benedek'
+      DB_NAME: 'labor_hf'
+      MQ_HOST: 'labor-mq'
   frontend:
     image: labor-frontend
     ports:
@@ -42,7 +57,7 @@ services:
     networks:
       - labor-network
     environment:
-      BACKEND_HOST: 'localhost'
+      BACKEND_HOST: 'backend-server'
 networks:
   labor-network:
     driver: bridge

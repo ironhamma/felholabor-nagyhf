@@ -30,9 +30,17 @@ const Image = sequelize.define("Image", {
   },
 });
 
+const Admin = sequelize.define("Admin", {
+  email: {
+    type: DataTypes.STRING,
+    allowNull: false,
+  },
+});
+
 sequelize.sync({ force: false }).then(() => {
   console.log("Database synchronized.");
 });
 
 exports.Image = Image;
+exports.Admin = Admin;
 exports.testConnection = testConnection;

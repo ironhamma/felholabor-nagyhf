@@ -1,4 +1,5 @@
 import React, { useRef, useState } from 'react';
+import FormData from 'form-data';
 import axios from 'axios';
 
 const BACKEND_HOST = import.meta.env.BACKEND_HOST || 'localhost';
