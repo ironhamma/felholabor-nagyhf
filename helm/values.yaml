@@ -1,4 +1,4 @@
 name: frontend
 replicas: 2
-IMAGE_TAG: b9f90e07e23d3c37a82cdc78361bdd0c8f94df68
+IMAGE_TAG: ba0f7b331943605addafd24caf81d66a3d06fd3c
 test: test
