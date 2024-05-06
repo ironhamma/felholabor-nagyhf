@@ -1,0 +1,3 @@
+name: felho-labor-nagyhf
+replicas: 2
+IMAGE_TAG: latest

@@ -1,0 +1,32 @@
+# templates/deployment.yaml
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: {{ .Values.name }}
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app: {{ .Values.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.name }}
+    spec:
+      containers:
+      - name: backend
+        image: szabobeno/felholabor-nagyhf:backend-server-{{ .Values.IMAGE_TAG }}
+        ports:
+        - containerPort: 8080
+      - name: mq
+        image: szabobeno/felholabor-nagyhf:labor-mq-{{ .Values.IMAGE_TAG }}
+        ports:
+        - containerPort: 5672
+      - name: frontend
+        image: szabobeno/felholabor-nagyhf:frontend-{{ .Values.IMAGE_TAG }}
+        ports:
+        - containerPort: 80
+      - name: detection-api
+        image: szabobeno/felholabor-nagyhf:detection-api-{{ .Values.IMAGE_TAG }}
+        ports:
+        - containerPort: 8081
