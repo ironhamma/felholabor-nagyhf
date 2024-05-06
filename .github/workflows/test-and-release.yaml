@@ -101,6 +101,8 @@ jobs:
           docker-compose up -d --build
   set-helm:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     needs: [lint, unit-test, build, deploy]
     steps:
       - name: Checkout code
