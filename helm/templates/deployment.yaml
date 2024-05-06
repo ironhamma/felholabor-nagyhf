@@ -18,15 +18,18 @@ spec:
         image: szabobeno/felholabor-nagyhf:labor-mq-{{ .Values.IMAGE_TAG }}
         ports:
         - containerPort: 5672
+        - containerPort: 15672
       - name: detection-api
         image: szabobeno/felholabor-nagyhf:detection-api-{{ .Values.IMAGE_TAG }}
         ports:
-        - containerPort: 8081
+        - containerPort: 4000
       - name: backend
         image: szabobeno/felholabor-nagyhf:backend-server-{{ .Values.IMAGE_TAG }}
         ports:
-        - containerPort: 8080
+        - containerPort: 5000
+        - containerPort: 3306
       - name: frontend
         image: szabobeno/felholabor-nagyhf:frontend-{{ .Values.IMAGE_TAG }}
         ports:
+        - containerPort: 8080
         - containerPort: 80

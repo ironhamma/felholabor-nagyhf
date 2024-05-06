@@ -6,8 +6,10 @@ spec:
   type: LoadBalancer
   ports:
     - port: 80
-      targetPort: http
+      targetPort: 80
       protocol: TCP
-      name: http
+    - port: 443
+      targetPort: 8080
+      protocol: TCP
   selector:
     app: felho-labor-nagyhf
