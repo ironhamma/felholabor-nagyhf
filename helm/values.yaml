@@ -1,4 +1,4 @@
 name: felho-labor-nagyhf
 replicas: 2
-IMAGE_TAG: ce9818156b358978fac54a5141b02e46b4c1bf31
+IMAGE_TAG: bfaf12ec6bb79cdb144505465998410b77b9eeba
 test: test
