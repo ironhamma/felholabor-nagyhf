@@ -12,6 +12,6 @@ spec:
     - port: 443
       targetPort: 8080
       protocol: TCP
-      name: https
+      name: httpsec
   selector:
     app: felho-labor-nagyhf
