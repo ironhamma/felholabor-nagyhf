@@ -16,11 +16,6 @@ spec:
       nodePort: {{ .Values.dbNodePort }}
       protocol: TCP
       name: database
-    - port: {{ .Values.backendPort }}
-      targetPort: 5000
-      nodePort: {{ .Values.backendNodePort }}
-      protocol: TCP
-      name: backend
     - port: {{ .Values.detectionApiPort }}
       targetPort: 4000
       nodePort: {{ .Values.detectionApiNodePort }}

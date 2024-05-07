@@ -32,7 +32,7 @@ spec:
         - containerPort: {{ .Values.frontendPort}}
         env:
           - name: BACKEND_HOST
-            value: "http://backend"
+            value: "backend"
           - name: BACKEND_PORT
             value: "{{ .Values.backendPort }}"
 ---
@@ -57,6 +57,8 @@ spec:
         - containerPort: {{ .Values.backendPort }}
         env:
           - name: DB_HOST
-            value: "http://frontend:{{ .Values.dbPort }}"
+            value: "frontend:{{ .Values.dbPort }}"
           - name: MQ_HOST
-            value: "http://frontend:{{ .Values.mqPort }}"
+            value: "frontend:{{ .Values.mqPort }}"
+          - name: DETECTION_HOST
+            value: "frontend:{{ .Values.detectionApiPort }}"
