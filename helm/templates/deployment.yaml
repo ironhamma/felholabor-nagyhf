@@ -13,7 +13,7 @@ spec:
       labels:
         app: {{ .Values.name }}
     spec:
-      containers:
+      initContainers:
       - name: mq
         image: szabobeno/felholabor-nagyhf:labor-mq-{{ .Values.IMAGE_TAG }}
         ports:
@@ -26,6 +26,7 @@ spec:
         image: szabobeno/felholabor-nagyhf:detection-api-{{ .Values.IMAGE_TAG }}
         ports:
         - containerPort: {{ .Values.detectionApiPort }}
+      containers:
       - name: backend
         image: szabobeno/felholabor-nagyhf:backend-server-{{ .Values.IMAGE_TAG }}
         ports:
