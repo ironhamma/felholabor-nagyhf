@@ -5,7 +5,7 @@ const { DB_USER, DB_PASSWORD, DB_NAME, DB_HOST } = require("../config");
 const sequelize = new Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
   host: DB_HOST,
   dialect: "mysql",
-  logging: false,
+  logging: true,
 });
 
 async function testConnection() {

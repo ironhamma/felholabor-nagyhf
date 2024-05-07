@@ -31,9 +31,9 @@ spec:
         ports:
         - containerPort: {{ .Values.frontendPort}}
         env:
-          - name: BACKEND_HOST
+          - name: VITE_BACKEND_HOST
             value: "backend"
-          - name: BACKEND_PORT
+          - name: VITE_BACKEND_PORT
             value: "{{ .Values.backendPort }}"
 ---
 apiVersion: apps/v1
