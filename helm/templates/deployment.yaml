@@ -45,7 +45,7 @@ spec:
         - containerPort: {{ .Values.backendPort }}
         env:
           - name: DB_HOST
-            value: "database:{{ .Values.dbPort }}"
+            value: "database"
           - name: MQ_HOST
             value: "mq:{{ .Values.mqPort }}"
           - name: DETECTION_HOST
