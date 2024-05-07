@@ -45,7 +45,7 @@ spec:
         - containerPort: {{ .Values.backendPort }}
         env:
           - name: DB_HOST
-            value: "db:{{ .Values.dbPort }}"
+            value: "database:{{ .Values.dbPort }}"
           - name: MQ_HOST
             value: "mq:{{ .Values.mqPort }}"
           - name: DETECTION_HOST
@@ -74,19 +74,19 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: db
+  name: database
 spec:
   replicas: {{ .Values.replicas }}
   selector:
     matchLabels:
-      app: db
+      app: database
   template:
     metadata:
       labels:
-        app: db
+        app: database
     spec:
       containers:
-      - name: db
+      - name: database
         image: szabobeno/felholabor-nagyhf:db-{{ .Values.IMAGE_TAG }}
         ports:
         - containerPort: {{ .Values.dbPort }}
