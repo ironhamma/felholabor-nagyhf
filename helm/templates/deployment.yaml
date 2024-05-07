@@ -90,6 +90,11 @@ spec:
         image: szabobeno/felholabor-nagyhf:db-{{ .Values.IMAGE_TAG }}
         ports:
         - containerPort: {{ .Values.dbPort }}
+        env:
+        - name: MYSQL_DATABASE
+          value: main_db
+        - name: MYSQL_ROOT_PASSWORD
+          value: s4cur4p4ss
 ---
 apiVersion: apps/v1
 kind: Deployment
