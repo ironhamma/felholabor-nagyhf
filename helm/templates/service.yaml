@@ -13,17 +13,17 @@ spec:
       name: http
     - port: 5000
       targetPort: 5000
-      noedPort: 35000
+      noedPort: 30050
       protocol: TCP
       name: backend
     - port: 4000
       targetPort: 4000
-      nodePort: 34000
+      nodePort: 30040
       protocol: TCP 
       name: detection-api
     - port: 5672
       targetPort: 5672
-      nodePort: 35672
+      nodePort: 30672
       protocol: TCP
       name: mq
   selector:
