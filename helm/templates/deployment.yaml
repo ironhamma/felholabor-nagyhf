@@ -2,16 +2,16 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: {{ .Values.name }}
+  name: frontend
 spec:
   replicas: {{ .Values.replicas }}
   selector:
     matchLabels:
-      app: {{ .Values.name }}
+      app: frontend
   template:
     metadata:
       labels:
-        app: {{ .Values.name }}
+        app: frontend
     spec:
       containers:
       - name: mq
@@ -26,11 +26,37 @@ spec:
         image: szabobeno/felholabor-nagyhf:detection-api-{{ .Values.IMAGE_TAG }}
         ports:
         - containerPort: {{ .Values.detectionApiPort }}
-      - name: backend
-        image: szabobeno/felholabor-nagyhf:backend-server-{{ .Values.IMAGE_TAG }}
-        ports:
-        - containerPort: {{ .Values.backendPort }}
       - name: frontend
         image: szabobeno/felholabor-nagyhf:frontend-{{ .Values.IMAGE_TAG }}
         ports:
         - containerPort: {{ .Values.frontendPort}}
+        env:
+          - name: BACKEND_HOST
+            value: "http://backend"
+          - name: BACKEND_PORT
+            value: "{{ .Values.backendPort }}"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      containers:
+      - name: backend
+        image: szabobeno/felholabor-nagyhf:backend-server-{{ .Values.IMAGE_TAG }}
+        ports:
+        - containerPort: {{ .Values.backendPort }}
+        env:
+          - name: DB_HOST
+            value: "http://frontend:{{ .Values.dbPort }}"
+          - name: MQ_HOST
+            value: "http://frontend:{{ .Values.mqPort }}"

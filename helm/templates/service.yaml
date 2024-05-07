@@ -33,3 +33,19 @@ spec:
       name: mq
   selector:
     app: frontend
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+  namespace: argo-hf-ns
+spec:
+  type: NodePort
+  ports:
+    - port: {{ .Values.backendPort }}
+      targetPort: 5000
+      nodePort: {{ .Values.backendNodePort }}
+      protocol: TCP
+      name: backend
+  selector:
+    app: backend
