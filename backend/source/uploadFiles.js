@@ -10,7 +10,7 @@ async function uploadFiles(req, res) {
   formData.append("image", fs.createReadStream(req.file.path));
 
   const { data } = await axios.post(
-    `http://${DETECTION_HOST}:4000/detect_cars`,
+    `http://${DETECTION_HOST}/detect_cars`,
     formData,
     {
       headers: { ...formData.getHeaders() },
