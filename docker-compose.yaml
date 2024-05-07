@@ -55,7 +55,7 @@ services:
     networks:
       - labor-network
     environment:
-      BACKEND_HOST: 'backend-server'
+      BACKEND_HOST: 'http://127.0.0.1:63434/'
 networks:
   labor-network:
     driver: bridge
