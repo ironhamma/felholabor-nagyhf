@@ -12,18 +12,11 @@ services:
     environment:
       PYTHON_HOST: 'detection-api'
   database:
-    image: mysql
-    environment:
-      MYSQL_DATABASE: ${DB_NAME}
-      MYSQL_USER: ${DB_USER}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
-      MYSQL_ROOT_PASSWORD: ${DB_ROOT}
+    image: szabobeno/felholabor-nagyhf:db-${IMAGE_TAG}
     ports:
       - "3306:3306"
     networks:
       - labor-network
-    volumes:
-      - mysql_data:/var/lib/mysql
   labor-mq:
     image: szabobeno/felholabor-nagyhf:labor-mq-${IMAGE_TAG}
     ports:

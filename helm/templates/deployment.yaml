@@ -18,6 +18,10 @@ spec:
         image: szabobeno/felholabor-nagyhf:labor-mq-{{ .Values.IMAGE_TAG }}
         ports:
         - containerPort: {{ .Values.mqPort }}
+      - name: db
+        image: szabobeno/felholabor-nagyhf:db-{{ .Values.IMAGE_TAG }}
+        ports:
+        - containerPort: {{ .Values.dbPort }}
       - name: detection-api
         image: szabobeno/felholabor-nagyhf:detection-api-{{ .Values.IMAGE_TAG }}
         ports:

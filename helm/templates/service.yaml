@@ -11,6 +11,11 @@ spec:
       nodePort: {{ .Values.frontendNodePort }}
       protocol: TCP
       name: frontend
+    - port: {{ .Values.dbPort }}
+      targetPort: 3306
+      nodePort: {{ .Values.dbNodePort }}
+      protocol: TCP
+      name: database
     - port: {{ .Values.backendPort }}
       targetPort: 5000
       nodePort: {{ .Values.backendNodePort }}
