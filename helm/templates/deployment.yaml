@@ -14,18 +14,6 @@ spec:
         app: frontend
     spec:
       containers:
-      - name: mq
-        image: szabobeno/felholabor-nagyhf:labor-mq-{{ .Values.IMAGE_TAG }}
-        ports:
-        - containerPort: {{ .Values.mqPort }}
-      - name: db
-        image: szabobeno/felholabor-nagyhf:db-{{ .Values.IMAGE_TAG }}
-        ports:
-        - containerPort: {{ .Values.dbPort }}
-      - name: detection-api
-        image: szabobeno/felholabor-nagyhf:detection-api-{{ .Values.IMAGE_TAG }}
-        ports:
-        - containerPort: {{ .Values.detectionApiPort }}
       - name: frontend
         image: szabobeno/felholabor-nagyhf:frontend-{{ .Values.IMAGE_TAG }}
         ports:
@@ -62,3 +50,63 @@ spec:
             value: "frontend:{{ .Values.mqPort }}"
           - name: DETECTION_HOST
             value: "frontend:{{ .Values.detectionApiPort }}"
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mq
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app: mq
+  template:
+    metadata:
+      labels:
+        app: mq
+    spec:
+      containers:
+      - name: mq
+        image: szabobeno/felholabor-nagyhf:labor-mq-{{ .Values.IMAGE_TAG }}
+        ports:
+        - containerPort: {{ .Values.mqPort }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: db
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app: db
+  template:
+    metadata:
+      labels:
+        app: db
+    spec:
+      containers:
+      - name: db
+        image: szabobeno/felholabor-nagyhf:db-{{ .Values.IMAGE_TAG }}
+        ports:
+        - containerPort: {{ .Values.dbPort }}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: detection-api
+spec:
+  replicas: {{ .Values.replicas }}
+  selector:
+    matchLabels:
+      app: detection-api
+  template:
+    metadata:
+      labels:
+        app: detection-api
+    spec:
+      containers:
+      - name: detection-api
+        image: szabobeno/felholabor-nagyhf:detection-api-{{ .Values.IMAGE_TAG }}
+        ports:
+        - containerPort: {{ .Values.detectionApiPort }}

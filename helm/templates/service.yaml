@@ -11,21 +11,6 @@ spec:
       nodePort: {{ .Values.frontendNodePort }}
       protocol: TCP
       name: frontend
-    - port: {{ .Values.dbPort }}
-      targetPort: 3306
-      nodePort: {{ .Values.dbNodePort }}
-      protocol: TCP
-      name: database
-    - port: {{ .Values.detectionApiPort }}
-      targetPort: 4000
-      nodePort: {{ .Values.detectionApiNodePort }}
-      protocol: TCP 
-      name: detection-api
-    - port: {{ .Values.mqPort }}
-      targetPort: 5672
-      nodePort: {{ .Values.mqNodePort }}
-      protocol: TCP
-      name: mq
   selector:
     app: frontend
 ---
@@ -35,12 +20,56 @@ metadata:
   name: backend
   namespace: argo-hf-ns
 spec:
-  type: NodePort
+  type: ClusterIP
   ports:
     - port: {{ .Values.backendPort }}
       targetPort: 5000
-      nodePort: {{ .Values.backendNodePort }}
       protocol: TCP
       name: backend
   selector:
     app: backend
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: database
+  namespace: argo-hf-ns
+spec:
+  type: ClusterIP
+  ports:
+    - port: {{ .Values.dbPort }}
+      targetPort: 3306
+      protocol: TCP
+      name: database
+  selector:
+    app: database
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: detection-api
+  namespace: argo-hf-ns
+spec:
+  type: ClusterIP
+  ports:
+    - port: {{ .Values.detectionApiPort }}
+      targetPort: 4000
+      protocol: TCP 
+      name: detection-api
+  selector:
+    app: detection-api
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: mq
+  namespace: argo-hf-ns
+spec:
+  type: ClusterIP
+  ports:
+    - port: {{ .Values.mqPort }}
+      targetPort: 5672
+      protocol: TCP
+      name: mq
+  selector:
+    app: mq
