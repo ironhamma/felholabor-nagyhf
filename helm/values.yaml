@@ -10,4 +10,3 @@ detectionApiPort: 4000
 detectionApiNodePort: 30040
 mqPort: 5672
 mqNodePort: 30672
-backendHost: 127.0.0.1

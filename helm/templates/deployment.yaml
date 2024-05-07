@@ -30,6 +30,3 @@ spec:
         image: szabobeno/felholabor-nagyhf:frontend-{{ .Values.IMAGE_TAG }}
         ports:
         - containerPort: {{ .Values.frontendPort}}
-        env:
-        - name: BACKEND_HOST
-          value: "{{ .Values.backendHost }}:{{ .Values.backendPort }}"

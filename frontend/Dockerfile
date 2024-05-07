@@ -10,7 +10,7 @@ RUN npm install
 # Copy the rest of the application files
 COPY frontend /app
 
-ENV VITE_BACKEND_HOST=127.0.0.1
+ENV VITE_BACKEND_HOST=192.168.49.2
 ENV VITE_BACKEND_PORT=30050
 
 # Build the React app
