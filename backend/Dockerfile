@@ -10,6 +10,15 @@ COPY backend/package*.json /app
 # Install dependencies
 RUN npm install
 
+ENV DETECTION_HOST=localhost
+ENV DB_HOST=localhost
+ENV DB_NAME=labor-db
+ENV DB_USER=benedek
+ENV DB_PASSWORD=benedek
+ENV MQ_HOST=localhost
+ENV MAIL_USER=
+ENV MAIL_PASS=
+
 # Copy the rest of the application files into the container
 COPY backend /app
 
