@@ -45,11 +45,11 @@ spec:
         - containerPort: {{ .Values.backendPort }}
         env:
           - name: DB_HOST
-            value: "frontend:{{ .Values.dbPort }}"
+            value: "db:{{ .Values.dbPort }}"
           - name: MQ_HOST
-            value: "frontend:{{ .Values.mqPort }}"
+            value: "mq:{{ .Values.mqPort }}"
           - name: DETECTION_HOST
-            value: "frontend:{{ .Values.detectionApiPort }}"
+            value: "detection-api:{{ .Values.detectionApiPort }}"
 ---
 apiVersion: apps/v1
 kind: Deployment
