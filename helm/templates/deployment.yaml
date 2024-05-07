@@ -13,7 +13,7 @@ spec:
       labels:
         app: {{ .Values.name }}
     spec:
-      initContainers:
+      containers:
       - name: mq
         image: szabobeno/felholabor-nagyhf:labor-mq-{{ .Values.IMAGE_TAG }}
         ports:
@@ -26,11 +26,15 @@ spec:
         image: szabobeno/felholabor-nagyhf:detection-api-{{ .Values.IMAGE_TAG }}
         ports:
         - containerPort: {{ .Values.detectionApiPort }}
-      containers:
       - name: backend
         image: szabobeno/felholabor-nagyhf:backend-server-{{ .Values.IMAGE_TAG }}
         ports:
         - containerPort: {{ .Values.backendPort }}
+        readinessProbe:
+          exec:
+            command: ["sh", "-c", "nc -z -w 3 localhost 3306 && nc -z -w 3 localhost 5672"]
+          initialDelaySeconds: 10
+          periodSeconds: 5
       - name: frontend
         image: szabobeno/felholabor-nagyhf:frontend-{{ .Values.IMAGE_TAG }}
         ports:
