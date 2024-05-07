@@ -20,8 +20,8 @@ app.use("/images", express.static(path.join(__dirname, "uploads")));
 setUpRoutes(app);
 
 app.listen(5000, async () => {
-  console.log({...config});
-  console.log('test');
+  console.log({ ...config });
+  console.log("test");
   console.log(`Server started on ${5000}`);
   await consumeMessages();
 });
