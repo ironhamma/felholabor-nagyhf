@@ -20,7 +20,7 @@ spec:
         - containerPort: {{ .Values.frontendPort}}
         env:
           - name: VITE_BACKEND_HOST
-            value: "backend"
+            value: "backend.argo-hf-ns.svc.cluster.local"
           - name: VITE_BACKEND_PORT
             value: "{{ .Values.backendPort }}"
 ---
