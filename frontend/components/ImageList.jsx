@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const BACKEND_HOST = import.meta.env.BACKEND_HOST || 'localhost';
-const BACKEND_PORT = import.meta.env.BACKEND_PORT || '5000';
+const BACKEND_HOST = import.meta.env.VITE_BACKEND_HOST || 'localhost';
+const BACKEND_PORT = import.meta.env.VITE_BACKEND_PORT || '5000';
+
 
 const ImageList = () => {
+  console.log(import.meta.env);
   const [images, setImages] = useState([]);
 
   useEffect(() => {

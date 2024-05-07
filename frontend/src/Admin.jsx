@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 
-const BACKEND_HOST = import.meta.env.BACKEND_HOST || 'http://localhost';
-const BACKEND_PORT = import.meta.env.BACKEND_PORT || '5000';
+const BACKEND_HOST = import.meta.env.VITE_BACKEND_HOST || 'http://localhost';
+const BACKEND_PORT = import.meta.env.VITE_BACKEND_PORT || '5000';
 
 const Admin = () => {
     const [email, setEmail] = useState('');
