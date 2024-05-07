@@ -70,11 +70,6 @@ jobs:
           tags: |
             szabobeno/felholabor-nagyhf:latest
             szabobeno/felholabor-nagyhf:db-${{ github.sha }}
-          build-args: |
-            MYSQL_DATABASE=${{ secrets.DB_NAME }}
-            MYSQL_USER=${{ secrets.DB_USER }}
-            MYSQL_PASSWORD=${{ secrets.DB_PASSWORD }}
-            MYSQL_ROOT_PASSWORD=${{ secrets.DB_ROOT }}
 
       - name: Build and push backend-server image
         uses: docker/build-push-action@v2
