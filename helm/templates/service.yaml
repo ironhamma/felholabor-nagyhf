@@ -4,56 +4,23 @@ metadata:
   name: frontend
   namespace: argo-hf-ns
 spec:
-  type: ClusterIP
+  type: LoadBalancer
   ports:
     - port: 80
       targetPort: 80
       protocol: TCP
       name: http
-  selector:
-    app: frontend
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: backend
-  namespace: argo-hf-ns
-spec:
-  type: ClusterIP
-  ports:
     - port: 5000
       targetPort: 5000
       protocol: TCP
-      name: http
-  selector:
-    app: backend
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: detection-api
-  namespace: argo-hf-ns
-spec:
-  type: ClusterIP
-  ports:
+      name: backend
     - port: 4000
       targetPort: 4000
       protocol: TCP 
-      name: http
-  selector:
-    app: detection-api
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: mq
-  namespace: argo-hf-ns
-spec:
-  type: ClusterIP
-  ports:
+      name: detection-api
     - port: 5672
       targetPort: 5672
       protocol: TCP
-      name: http
+      name: mq
   selector:
-    app: mq
+    app: frontend
