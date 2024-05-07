@@ -10,7 +10,7 @@ RUN npm install
 # Copy the rest of the application files
 COPY frontend /app
 
-ENV VITE_BACKEND_HOST=backend.argo-hf-ns.svc.cluster.local
+ENV VITE_BACKEND_HOST=localhost
 ENV VITE_BACKEND_PORT=5000
 
 # Build the React app
