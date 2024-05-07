@@ -9,6 +9,7 @@ require("dotenv").config();
 const { publishMessage } = require("./publishMessage");
 const { consumeMessages } = require("./consumeMessages");
 const { setUpRoutes } = require("./source/routes");
+const config = require("./config");
 
 const app = express();
 app.use(express.json());
@@ -19,6 +20,9 @@ app.use("/images", express.static(path.join(__dirname, "uploads")));
 setUpRoutes(app);
 
 app.listen(5000, async () => {
+  console.log(config.DB_HOST);
+  console.log(config.MQ_HOST);
+  console.log(config.DETECTION_HOST);
   console.log(`Server started on ${5000}`);
   await consumeMessages();
 });
