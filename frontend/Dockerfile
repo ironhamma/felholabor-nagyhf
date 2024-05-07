@@ -10,6 +10,9 @@ RUN npm install
 # Copy the rest of the application files
 COPY frontend /app
 
+ENV BACKEND_HOST=127.0.0.1
+ENV BACKEND_PORT=30050
+
 # Build the React app
 RUN npm run build
 

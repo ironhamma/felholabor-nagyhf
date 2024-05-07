@@ -4,7 +4,7 @@ metadata:
   name: frontend
   namespace: argo-hf-ns
 spec:
-  type: LoadBalancer
+  type: NodePort
   ports:
     - port: {{ .Values.frontendPort }}
       targetPort: 80
@@ -13,7 +13,7 @@ spec:
       name: frontend
     - port: {{ .Values.backendPort }}
       targetPort: 5000
-      noedPort: {{ .Values.backendNodePort }}
+      nodePort: {{ .Values.backendNodePort }}
       protocol: TCP
       name: backend
     - port: {{ .Values.detectionApiPort }}
