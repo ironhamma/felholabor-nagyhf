@@ -2,3 +2,12 @@ name: frontend
 replicas: 2
 IMAGE_TAG: 9d735a32530023b2d1de12b36713154172453a5b
 test: test
+frontendPort: 80
+frontendNodePort: 30081
+backendPort: 5000
+backendNodePort: 30050
+detectionApiPort: 4000
+detectionApiNodePort: 30040
+mqPort: 5672
+mqNodePort: 30672
+backendHost: 127.0.0.1

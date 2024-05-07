@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
 
-const BACKEND_HOST = import.meta.env.BACKEND_HOST || 'http://localhost:5000';
-console.log(BACKEND_HOST);
+const BACKEND_HOST = import.meta.env.BACKEND_HOST || 'http://localhost';
+const BACKEND_PORT = import.meta.env.BACKEND_PORT || '5000';
 
 const Admin = () => {
     const [email, setEmail] = useState('');
@@ -19,7 +19,7 @@ const Admin = () => {
 
     const fetchEmails = async () => {
         try {
-            const response = await axios.get(`${BACKEND_HOST}/emails`);
+            const response = await axios.get(`${BACKEND_HOST}:${BACKEND_PORT}/emails`);
             const mails = response.data && response.data.emails;
             if (mails.length === 0){
                 return;
