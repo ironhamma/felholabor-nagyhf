@@ -6,10 +6,10 @@ const { DETECTION_HOST } = require("../config");
 const { Image } = require("../models/db");
 
 async function uploadFiles(req, res) {
-  try{
+  try {
     const formData = new FormData();
     formData.append("image", fs.createReadStream(req.file.path));
-    
+
     const { data } = await axios.post(
       `http://${DETECTION_HOST}/detect_cars`,
       formData,
@@ -17,15 +17,15 @@ async function uploadFiles(req, res) {
         headers: { ...formData.getHeaders() },
       },
     );
-    
+
     const detection = data.cars;
-    
+
     const uploadedImages = await Image.create({
       image: req.file.filename,
       caption: req.body.caption,
       detection,
     });
-    
+
     res.json({ message: "Successfully uploaded files", uploadedImages });
   } catch (e) {
     console.error(e);
