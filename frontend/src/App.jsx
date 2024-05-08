@@ -13,7 +13,7 @@ function App() {
 
     const subscribeEmail = async () => {
         try {
-            await axios.post(`${BACKEND_HOST}/subscribe`, { email });
+            await axios.post(`${BACKEND_HOST}:${BACKEND_PORT}/subscribe`, { email });
             setEmail('');
         } catch (error) {
             console.error(error);
