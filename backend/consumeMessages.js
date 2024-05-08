@@ -21,15 +21,13 @@ const consumeMessages = async () => {
 
     console.log("Labor MQ is waiting for messages...");
 
-    const admins = await Admin.findAll({ raw: true });
-
-    console.log(admins);
-
     channel.consume(
       queueName,
       async (msg) => {
         const message = JSON.parse(msg.content.toString());
         console.log(`Received message: ${JSON.stringify(message)}`);
+        const admins = await Admin.findAll({ raw: true });
+        console.log(admins);
 
         for (const admin of admins) {
           console.log("sending email to admin", admin.email);
