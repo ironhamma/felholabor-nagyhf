@@ -1,5 +1,5 @@
 # Use the official Python image as base image
-FROM python:3.9-slim
+FROM python:3.7.9
 
 RUN apt-get update \
     && apt-get install -y libgl1-mesa-glx libgl1 \
