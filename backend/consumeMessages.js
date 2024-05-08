@@ -1,6 +1,7 @@
 const amqp = require("amqplib");
 const nodeMailer = require("nodemailer");
 const { MQ_HOST, MAIL_USER, MAIL_PASS } = require("./config");
+const { Admin } = require("./models/db");
 
 const transporter = nodeMailer.createTransport({
   service: "gmail",
@@ -20,20 +21,25 @@ const consumeMessages = async () => {
 
     console.log("Labor MQ is waiting for messages...");
 
+    const admins = await Admin.findAll({ raw: true });
+
     channel.consume(
       queueName,
       async (msg) => {
         const message = JSON.parse(msg.content.toString());
         console.log(`Received message: ${JSON.stringify(message)}`);
 
-        const mailOptions = {
-          from: MAIL_USER,
-          to: MAIL_USER, // TODO: Actual admin
-          subject: "Labor MQ test",
-          text: JSON.stringify(message),
-        };
+        for (const admin of admins) {
+          console.log("sending email to admin", admin.email);
+          const mailOptions = {
+            from: MAIL_USER,
+            to: admin.email, // TODO: Actual admin
+            subject: "Labor MQ test",
+            text: JSON.stringify(message),
+          };
 
-        await transporter.sendMail(mailOptions);
+          await transporter.sendMail(mailOptions);
+        }
 
         // Implement email sending logic here
       },
