@@ -23,6 +23,8 @@ const consumeMessages = async () => {
 
     const admins = await Admin.findAll({ raw: true });
 
+    console.log(admins);
+
     channel.consume(
       queueName,
       async (msg) => {
