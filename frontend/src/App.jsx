@@ -13,7 +13,7 @@ function App() {
 
     const subscribeEmail = async () => {
         try {
-            await axios.post(`${BACKEND_HOST}:${BACKEND_PORT}/subscribe`, { email });
+            await axios.post(`http://${BACKEND_HOST}:${BACKEND_PORT}/subscribe`, { email });
             setEmail('');
         } catch (error) {
             console.error(error);
@@ -22,7 +22,7 @@ function App() {
 
     const fetchEmails = async () => {
         try {
-            const response = await axios.get(`${BACKEND_HOST}:${BACKEND_PORT}/emails`);
+            const response = await axios.get(`http://${BACKEND_HOST}:${BACKEND_PORT}/emails`);
             const mails = response.data && response.data.emails;
             if (mails.length === 0){
                 return;
