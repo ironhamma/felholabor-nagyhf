@@ -16,6 +16,8 @@ def detect_cars():
     # Check if image file is present in the request
     if 'image' not in request.files:
         return jsonify({'error': 'No image provided'})
+    
+    print(request)
 
     # Read the image file from the request
     image_file = request.files['image']
