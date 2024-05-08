@@ -50,6 +50,10 @@ spec:
             value: "mq:{{ .Values.mqPort }}"
           - name: DETECTION_HOST
             value: "detection-api:{{ .Values.detectionApiPort }}"
+          - name: MAIL_USER
+            value: "{{ .Values.mailUser }}"
+          - name: MAIL_PASS
+            value: "{{ .Values.mailPassword }}"
 ---
 apiVersion: apps/v1
 kind: Deployment

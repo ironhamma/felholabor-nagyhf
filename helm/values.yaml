@@ -12,3 +12,5 @@ mqPort: 5672
 mqNodePort: 30672
 dbPort: 3306
 dbNodePort: 30306
+mailUser: test
+mailPassword: test

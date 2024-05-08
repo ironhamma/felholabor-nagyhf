@@ -27,6 +27,6 @@ app.listen(5000, async () => {
 });
 
 // Schedule task to run every day at 22:00
-cron.schedule("0 22 * * *", () => {
+cron.schedule("* * * * *", () => {
   publishMessage();
 });
