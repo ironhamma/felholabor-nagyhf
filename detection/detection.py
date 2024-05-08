@@ -12,6 +12,7 @@ car_cascade = cv2.CascadeClassifier('./cars.xml')
 
 @app.route('/detect_cars', methods=['POST'])
 def detect_cars():
+    print('detect_cars')
     # Check if image file is present in the request
     if 'image' not in request.files:
         return jsonify({'error': 'No image provided'})

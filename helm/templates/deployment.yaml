@@ -110,3 +110,6 @@ spec:
         image: szabobeno/felholabor-nagyhf:detection-api-{{ .Values.IMAGE_TAG }}
         ports:
         - containerPort: {{ .Values.detectionApiPort }}
+        env:
+          - name: PYTHON_HOST
+            value: "detection-api"
