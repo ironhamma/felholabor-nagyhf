@@ -13,6 +13,8 @@ const publishMessage = async () => {
       raw: true,
     });
 
+    console.log(imageData);
+
     let message = [];
 
     for (const image of imageData) {

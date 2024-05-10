@@ -40,7 +40,6 @@ const consumeMessages = async () => {
         const message = JSON.parse(msg.content.toString());
         console.log(`Received message: ${JSON.stringify(message)}`);
         const admins = await Admin.findAll({ raw: true });
-        console.log(admins);
 
         for (const admin of admins) {
           console.log("sending email to admin", admin.email);
