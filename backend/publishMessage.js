@@ -34,5 +34,3 @@ const publishMessage = async () => {
 };
 
 exports.publishMessage = publishMessage;
-
-// TODO: Valahol kiszedni az infót, másik oldalt meg az adminokat és kiküldeni a levelet

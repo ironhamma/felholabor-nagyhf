@@ -33,10 +33,11 @@ A házi feladat megoldásom 5 komponenst használ, melyek:
 
 ## Lokális konténerizált használat
 
-1. A `frontend` mappában a Dockerfile buildelése a `docker build -t labor-frontend .`˙ parancs futtatásával
-2. A `backend` mappában a Dockerfile buildelése a `docker build -t backend .` parancs futtatásával
-3. A `detection` mappában a Dockerfile buildelése a `docker build -t detection .` parancs futtatásával
-4. A `mq` mappában a Dockerfile buildelése a `docker build -t labor-mq .` parancs futtatásával
+1. A `root` mappában a Dockerfile buildelése a `docker build -f ./frontend/Dockerfile -t labor-frontend .`˙ parancs futtatásával
+2. A `root` mappában a Dockerfile buildelése a `docker build -f ./backend/Dockerfile -t backend .` parancs futtatásával
+3. A `root` mappában a Dockerfile buildelése a `docker build -f ./detection/Dockerfile -t detection .` parancs futtatásával
+3. A `root` mappában a Dockerfile buildelése a `docker build -f ./db/Dockerfile -t db .` parancs futtatásával
+4. A `root` mappában a Dockerfile buildelése a `docker build -f ./mq/Dockerfile -t labor-mq .` parancs futtatásával
 5. A `dev` könyvtárban a `docker-compose up -d` parancs futtatása
 6. Pár példa kép található a `dev/examples` mappában
 
@@ -47,13 +48,17 @@ A kódban történő módosítás után PUSH eseményre lefut a `Test, build and
 A workflow lépései:
 - Tesztek futtatása
 - Build
-- - Docker image-ek készítése a `detection`, `mq`, `backend` és `frontend` könyvtárakban található Dockerfile alapján
+- - Docker image-ek készítése a `detection`, `mq`, `db`, `backend` és `frontend` könyvtárakban található Dockerfile alapján
 - - Docker image-ek feltöltése a projekthez tartozó Dockerhub repository-ba, a commithoz tartozó hash-t használva tag-ként
-- Deploy: `docker-compose up -d build` parancs futtatása
+- Deploy
+- - ArgoCD-ben alkalmazás létrehozása, amely a repo-t targeteli.
+- - `Values.yaml`-ben a `mailUser` és `mailPassword` paraméterek megadása. (Itt a rendszer egy Gmail-es email címet és egy Gmail alkalmazás tokent vár)
+- - Tunnel indítása a frontend számára a `minikube service -n argo-hf-ns frontend`
+- - Ha a frontend nem érné el a backendet a `kubectl port-forward service/backend -n argo-hf-ns 5000:5000` parancs futtatásával kiajánlható localhost-ra a backend és úgy már biztosan el fogja érni
 
-## TODO:
-- Verzió követelmények hozzáadása
-- Kód szebb strukturálása
-- Minden kellő változó .env-be mozgatása
-- Feliratkozás implementálása
-- Statikus és unit tesztek hozzáadása
+## Verzió követelmények lokális használatra
+- Node.js v18.0.0 or higher
+- Python 3.7.9 or higher
+- npm package manager
+- mysql
+- RabbitMQ szerver (vagy Dockerben való futtatása a repo-ban lévő image alapján)
