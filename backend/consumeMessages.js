@@ -11,6 +11,18 @@ const transporter = nodeMailer.createTransport({
   },
 });
 
+const generateMessage = (imageData) => {
+  // generate html table for message data
+  let message =
+    "<table><tr><th>Image Caption</th><th>Detected cars</th><th>Uploaded At</th></tr>";
+  for (const image of imageData) {
+    message += `<tr><td>${image.caption}</td><td>${image.detection}</td><td>${image.createdAt}</td></tr>`;
+  }
+  message += "</table>";
+
+  return message;
+};
+
 const consumeMessages = async () => {
   try {
     const connection = await amqp.connect(`amqp://${MQ_HOST}`);
@@ -33,15 +45,13 @@ const consumeMessages = async () => {
           console.log("sending email to admin", admin.email);
           const mailOptions = {
             from: MAIL_USER,
-            to: admin.email, // TODO: Actual admin
-            subject: "Labor MQ test",
-            text: JSON.stringify(message),
+            to: admin.email,
+            subject: `Felhőlabor detektálások: ${new Date().toLocaleString()}`,
+            text: generateMessage(msg),
           };
 
           await transporter.sendMail(mailOptions);
         }
-
-        // Implement email sending logic here
       },
       { noAck: true },
     );

@@ -15,10 +15,11 @@ const publishMessage = async () => {
 
     let message = [];
 
-    for (const imag of imageData) {
+    for (const image of imageData) {
       message.push({
-        caption: imag.caption,
-        detection: imag.detection.length,
+        caption: image.caption,
+        detection: image.detection.length,
+        createdAt: image.createdAt,
       });
     }
 
