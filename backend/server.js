@@ -9,7 +9,6 @@ require("dotenv").config();
 const { publishMessage } = require("./publishMessage");
 const { consumeMessages } = require("./consumeMessages");
 const { setUpRoutes } = require("./source/routes");
-const config = require("./config");
 
 const app = express();
 app.use(express.json());
