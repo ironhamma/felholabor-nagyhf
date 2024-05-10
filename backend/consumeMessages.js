@@ -48,7 +48,7 @@ const consumeMessages = async () => {
             from: MAIL_USER,
             to: admin.email,
             subject: `Felhőlabor detektálások: ${new Date().toLocaleString()}`,
-            text: generateMessage(msg),
+            html: generateMessage(msg),
           };
 
           await transporter.sendMail(mailOptions);
