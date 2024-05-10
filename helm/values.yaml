@@ -1,6 +1,6 @@
 name: frontend
 replicas: 2
-IMAGE_TAG: f4f6cd0c40542938443ef55e51a3a6acc08fb5ea
+IMAGE_TAG: 31b8b3dc2a3895c423243bc772fed1b16a046b0b
 test: test
 frontendPort: 80
 frontendNodePort: 30081
