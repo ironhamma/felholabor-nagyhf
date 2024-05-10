@@ -14,10 +14,9 @@ const transporter = nodeMailer.createTransport({
 const generateMessage = (imageData) => {
   // generate html table for message data
   const images = JSON.parse(imageData.content.toString());
-  let message =
-    "<table><tr><th>Image Caption</th><th>Detected cars</th><th>Uploaded At</th></tr>";
+  let message = "<table><tr><th>Kép leírás</th><th>Detektált autók</th></tr>";
   for (const image of images) {
-    message += `<tr><td>${image.caption}</td><td>${image.detection}</td><td>${image.createdAt}</td></tr>`;
+    message += `<tr><td>${image.caption}</td><td>${image.detection}</td></tr>`;
   }
   message += "</table>";
 

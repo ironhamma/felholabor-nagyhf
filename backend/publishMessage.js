@@ -21,7 +21,6 @@ const publishMessage = async () => {
       message.push({
         caption: image.caption,
         detection: image.detection.length,
-        createdAt: image.createdAt,
       });
     }
 
